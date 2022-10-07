@@ -1,9 +1,9 @@
-import Fetch from './components/Fetch/Fetch'
+import { HomePage } from './pages'
 
 function App() {
     return (
         <div>
-            <Fetch title={'Github Info from Props'} />
+            <HomePage />
         </div>
     )
 }
