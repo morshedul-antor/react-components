@@ -1,0 +1,43 @@
+.tableList {
+    width: 50%;
+}
+
+.tableMain {
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    display: table;
+    width: 100%;
+}
+
+.tableMain tr {
+    box-shadow: 0 2px 3px rgb(228, 232, 233);
+}
+
+.tableMain tr th {
+    font-size: 14px;
+    padding: 12px;
+    background-color: cadetblue;
+    border-radius: 4px;
+    color: white;
+}
+
+.tableMain tr td {
+    text-align: center;
+    font-size: 14px;
+    color: var(--dark);
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+}
+
+.tableMain button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: rgb(18, 150, 136);
+}
+
+.tableMain .cap {
+    text-transform: uppercase;
+}

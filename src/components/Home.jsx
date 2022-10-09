@@ -1,10 +1,20 @@
 import { useState } from 'react'
+import { tableData } from '../utils/data'
 import { FormField, Input, ButtonForm } from './Form/Form'
 import classes from './Home.module.css'
+import { TableField, TableList } from './Table/Table'
 
 export default function Home() {
     const [text, setText] = useState('')
     const [email, setEmail] = useState('')
+
+    const columns = [
+        { field: 'id', heading: '#' },
+        { field: 'name', heading: 'Name' },
+        { field: 'address', heading: 'Address' },
+        { field: 'date', heading: 'Date' },
+        { field: 'order', heading: 'Order No' },
+    ]
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -13,7 +23,7 @@ export default function Home() {
             text,
             email,
         }
-        let postFetch = await fetch(`users`, {
+        await fetch(`users`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -21,10 +31,6 @@ export default function Home() {
             },
             body: JSON.stringify(details),
         })
-
-        if (postFetch.ok) {
-            console.log('success')
-        }
     }
 
     return (
@@ -51,6 +57,30 @@ export default function Home() {
                     <ButtonForm title={'Submit'} />
                 </form>
             </FormField>
+            <h1>Table Components</h1>
+            {/* <TableField users={tableData} columns={columns}></TableField> */}
+            <TableList>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Order Number</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    {tableData.map((data, index) => (
+                        <tr key={index}>
+                            <td>{data.id}</td>
+                            <td className={classes.cap}>{data.name}</td>
+                            <td>{data.address}</td>
+                            <td>{data.order}</td>
+                            <td>
+                                <button>Click</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </TableList>
         </div>
     )
 }
