@@ -1,0 +1,11 @@
+.tableField table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tableField td,
+.tableField th {
+    border-bottom: 1px #dddddd solid;
+    text-align: center;
+    padding: 20px 50px;
+}
