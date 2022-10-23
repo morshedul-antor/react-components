@@ -3,23 +3,28 @@ import { FormField, Input, ButtonForm } from './Form/Form'
 import classes from './Home.module.css'
 
 export default function Home() {
-    const [text, setText] = useState('')
-    const [email, setEmail] = useState('')
+    const [user, setUser] = useState({
+        text: '',
+        email: '',
+        phone: '',
+    })
+
+    console.log(user)
+
+    const handleOnchange = (e) => {
+        setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const details = {
-            text,
-            email,
-        }
         let postFetch = await fetch(`users`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(details),
+            body: JSON.stringify(user),
         })
 
         if (postFetch.ok) {
@@ -32,20 +37,28 @@ export default function Home() {
             <h1>Form Components</h1>
             <FormField>
                 <form onSubmit={(e) => handleSubmit(e)}>
+                    <Input
+                        title={'Text: '}
+                        type={'text'}
+                        name={'text'}
+                        placeholder={'Text Field'}
+                        onChange={handleOnchange}
+                    />
+
                     <div className={classes.formGrid}>
-                        <Input
-                            title={'Text: '}
-                            type={'text'}
-                            placeholder={'Text Field'}
-                            value={text}
-                            onChange={setText}
-                        />
                         <Input
                             title={'Email: '}
                             type={'email'}
+                            name={'email'}
                             placeholder={'Email Field'}
-                            value={email}
-                            onChange={setEmail}
+                            onChange={handleOnchange}
+                        />
+                        <Input
+                            title={'Phone: '}
+                            type={'number'}
+                            name={'phone'}
+                            placeholder={'Phone Field'}
+                            onChange={handleOnchange}
                         />
                     </div>
                     <ButtonForm title={'Submit'} />

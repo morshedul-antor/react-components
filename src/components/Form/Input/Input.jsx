@@ -5,12 +5,7 @@ export default function Input(props) {
         <div className={classes.input}>
             <label>
                 {props.title}
-                <input
-                    type={props.type}
-                    value={props.value}
-                    onChange={(e) => props.onChange(e.target.value)}
-                    placeholder={props.placeholder}
-                />
+                <input type={props.type} name={props.name} onChange={props.onChange} placeholder={props.placeholder} />
             </label>
         </div>
     )
